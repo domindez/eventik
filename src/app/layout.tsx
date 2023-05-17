@@ -2,6 +2,7 @@ import React from 'react'
 import { Barlow_Condensed } from 'next/font/google'
 import '../sass/Globals.scss'
 import Header from '@/components/Header'
+import Navbar from '@/components/Navbar'
 
 const BarlowCondensed = Barlow_Condensed({ subsets: ['latin'], weight: '400' })
 
@@ -16,6 +17,7 @@ export default function RootLayout ({ children }: {children: React.ReactNode}) {
 			<body className={BarlowCondensed.className}>
 				<Header />
 				{children}
+				<Navbar />
 			</body>
 		</html>
   )
