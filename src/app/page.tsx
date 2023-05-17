@@ -27,3 +27,16 @@ export default async function Home () {
     </main>
   )
 }
+
+/*
+{
+  "acceptingReservations": true,
+  "name": "Bingo",
+  "date": "2023-06-12T20:00",
+  "duration": "140 minutos aprox",
+  "description": "Vamos a jugar al Bingo",
+  "price": 5,
+  "bar": "bars/u6TCmU5Otiyds4eFSsWs",
+  "location": {"latitude": 0, "longitude": 0}
+}
+*/
