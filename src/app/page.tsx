@@ -10,7 +10,14 @@ import '../sass/HomePage.scss'
 // }
 
 export default async function Home () {
-  const events = await getCollectionData(eventsRef) as Event[]
+  console.log('#######################################################')
+  let events = await getCollectionData(eventsRef) as Event[]
+  // Ordena los eventos por la fecha.
+  events = events.sort((a, b) => {
+    const dateA = a.date.toDate()
+    const dateB = b.date.toDate()
+    return dateA.getTime() - dateB.getTime()
+  })
   return (
     <main className='home-page'>
       {events.map((event, index) => (
@@ -27,16 +34,3 @@ export default async function Home () {
     </main>
   )
 }
-
-/*
-{
-  "acceptingReservations": true,
-  "name": "Bingo",
-  "date": "2023-06-12T20:00",
-  "duration": "140 minutos aprox",
-  "description": "Vamos a jugar al Bingo",
-  "price": 5,
-  "bar": "bars/u6TCmU5Otiyds4eFSsWs",
-  "location": {"latitude": 0, "longitude": 0}
-}
-*/

@@ -1,15 +1,16 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, getDocs, CollectionReference, query, where, deleteDoc, doc, DocumentData, QuerySnapshot } from 'firebase/firestore'
 import { Condition } from './interfaces'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyALoN2baYwLB2ioy0HqviUtRA0w3D-ttPg',
-  authDomain: 'eventik-6c00b.firebaseapp.com',
-  projectId: 'eventik-6c00b',
-  storageBucket: 'eventik-6c00b.appspot.com',
-  messagingSenderId: '664858688091',
-  appId: '1:664858688091:web:4f47a5b750278304a39d7e',
-  measurementId: 'G-6NX3F9YL2H'
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 }
 
 // init firebase app
@@ -17,6 +18,7 @@ initializeApp(firebaseConfig)
 
 // init services
 export const db = getFirestore()
+export const auth = getAuth()
 
 // collection reference
 export const barsRef = collection(db, 'bars')

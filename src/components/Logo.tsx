@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import '../sass/Header.scss'
+import logo from '../img/logo.png'
 
 const Logo = () => {
   return (
-    <Image className='logo' src={require('../img/logo.png')} alt='logo eventik'/>
+    <Image className='logo' src={logo} alt='logo eventik'/>
   )
 }
 

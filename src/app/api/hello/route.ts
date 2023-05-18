@@ -1,6 +1,6 @@
-import { eventsRef } from '@/logic/firebase'
+import { db, eventsRef } from '@/logic/firebase'
 import { EventRequestBody } from '@/logic/interfaces'
-import { GeoPoint, Timestamp, addDoc } from 'firebase/firestore'
+import { GeoPoint, Timestamp, addDoc, doc } from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 
 export async function GET () {
@@ -19,7 +19,7 @@ export async function POST (request:Request) {
     duration: body.duration,
     description: body.description,
     price: body.price,
-    bar: body.bar,
+    bar: doc(db, body.bar),
     location: new GeoPoint(body.location.latitude, body.location.longitude)
   })
   return new Response('Ok')
