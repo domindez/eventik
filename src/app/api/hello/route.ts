@@ -1,5 +1,5 @@
-import { db, eventsRef } from '@/logic/firebase'
-import { EventRequestBody } from '@/logic/interfaces'
+import { db, eventsRef } from '@/lib/firebase'
+import { EventRequestBody } from '@/lib/interfaces'
 import { GeoPoint, Timestamp, addDoc, doc } from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 

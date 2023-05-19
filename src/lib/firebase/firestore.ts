@@ -1,24 +1,6 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs, CollectionReference, query, where, deleteDoc, doc, DocumentData, QuerySnapshot } from 'firebase/firestore'
-import { Condition } from './interfaces'
-import { getAuth } from 'firebase/auth'
-
-const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-}
-
-// init firebase app
-initializeApp(firebaseConfig)
-
-// init services
-export const db = getFirestore()
-export const auth = getAuth()
+import { collection, getDocs, CollectionReference, query, where, deleteDoc, doc, DocumentData, QuerySnapshot } from 'firebase/firestore'
+import { Condition } from '../interfaces'
+import { db } from '.'
 
 // collection reference
 export const barsRef = collection(db, 'bars')

@@ -1,6 +1,10 @@
+import LoginPage from '../login/page'
+
 const Profile = () => {
   return (
-		<div>Profile</div>
+		<div>
+      <LoginPage />
+    </div>
   )
 }
 export default Profile

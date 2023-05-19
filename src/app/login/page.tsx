@@ -4,10 +4,10 @@ import LoginForm from '@/components/LoginForm'
 import '../../sass/LoginPage.scss'
 import { useAuthContext } from '@/AuthContext'
 import { signOut } from 'firebase/auth'
-import { auth } from '@/logic/firebase'
+import { auth } from '@/lib/firebase'
 
 const LoginPage = () => {
-  const { user }: any = useAuthContext()
+  const { user } = useAuthContext()
 
   const handleSignOut = async () => {
     try {
@@ -18,7 +18,6 @@ const LoginPage = () => {
     }
   }
 
-  console.log(user)
   return (
 		<div className='LoginPage'>
 			{!user ? <LoginForm /> : <button onClick={handleSignOut}>Log out</button>	}

@@ -1,7 +1,7 @@
 import EventCard from '@/components/EventCard'
-import { eventsRef, getCollectionData } from '@/logic/firebase'
-import { Event } from '@/logic/interfaces'
+import { Event } from '@/lib/interfaces'
 import '../sass/HomePage.scss'
+import { eventsRef, getCollectionData } from '@/lib/firebase/firestore'
 
 // async function getData () {
 //   const res = await fetch('http://localhost:3000/api/hello', { next: { revalidate: 1 } })
