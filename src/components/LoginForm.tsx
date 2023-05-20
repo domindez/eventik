@@ -108,8 +108,8 @@ const LoginForm = () => {
         <form onSubmit={handleLogIn}>
         <input ref={emailRef} name='email' type='email' required placeholder='Email'/>
           <input ref={passwordRef} name='password' type='password' required placeholder='Password' />
-          <p>{error && error}</p>
           <button type='submit' className='login-btn'>Log in</button>
+          <p>{error && error}</p>
         </form>
 
         <hr />
@@ -128,8 +128,8 @@ const LoginForm = () => {
           <input ref={emailRef} name='email' type='email' required placeholder='Email'/>
           <input ref={passwordRef} name='password' type='password' required placeholder='Password' />
           <input ref={repeatPasswordRef} name='repeatPassword' type='password' required placeholder='Repetir password' />
-          <p>{error && error}</p>
           <button type='submit' className='login-btn'>Crear cuenta</button>
+          <p>{error && error}</p>
         </form>
         <hr />
         <button onClick={handleGoogleLogin}>
