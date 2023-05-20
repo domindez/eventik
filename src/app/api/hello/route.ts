@@ -1,4 +1,5 @@
-import { db, eventsRef } from '@/lib/firebase'
+import { db } from '@/lib/firebase'
+import { eventsRef } from '@/lib/firebase/firestore'
 import { EventRequestBody } from '@/lib/interfaces'
 import { GeoPoint, Timestamp, addDoc, doc } from 'firebase/firestore'
 import { NextResponse } from 'next/server'
