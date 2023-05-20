@@ -19,7 +19,7 @@ export default async function Home () {
     return dateA.getTime() - dateB.getTime()
   })
   return (
-    <main className='home-page'>
+    <div className='home-page'>
       {events.map((event, index) => (
         <EventCard
         key={index}
@@ -31,6 +31,6 @@ export default async function Home () {
         description={event.description}
         />
       ))}
-    </main>
+    </div>
   )
 }

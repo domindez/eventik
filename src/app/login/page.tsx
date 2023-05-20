@@ -19,8 +19,19 @@ const LoginPage = () => {
   }
 
   return (
-		<div className='LoginPage'>
-			{!user ? <LoginForm /> : <button onClick={handleSignOut}>Log out</button>	}
+		<div className='login-page'>
+      {!user && <LoginForm /> }
+
+      {user &&
+      <div>
+        <h3>User Info</h3>
+        <p>Nombre: {user.displayName}</p>
+        <p>Email: {user.email}</p>
+        <p>Verificado: {user.emailVerified ? 'Sí' : 'No'}</p>
+
+        <button onClick={handleSignOut}>Log out</button>
+      </div>
+      }
 		</div>
   )
 }

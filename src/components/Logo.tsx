@@ -4,7 +4,11 @@ import logo from '../img/logo.png'
 
 const Logo = () => {
   return (
-    <Image className='logo' src={logo} alt='logo eventik'/>
+    <Image
+    className='logo'
+    src={logo}
+    alt='logo eventik'
+    priority={true} />
   )
 }
 

@@ -18,7 +18,9 @@ export default function RootLayout ({ children }: {children: React.ReactNode}) {
 			<body className={BarlowCondensed.className}>
 				<AuthContextProvider>
 					<Header />
-					{children}
+					<main>
+						{children}
+					</main>
 					<Navbar />
 				</AuthContextProvider>
 			</body>
