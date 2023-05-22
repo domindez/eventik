@@ -17,11 +17,10 @@ const EventCard = async ({ name, duration, date, price, bar, description, eventT
   if (!barData) return
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const eventImg = require(`../img/events/${eventType}.png`)
 
   return (
 		<div className='event-card'>
-			<Image src={eventImg} alt='event-image'/>
+			<Image src={`/img/events/${eventType}.png`} width={360} height={180} alt='event-image'/>
 			<div className='event-card__info'>
 				<h3>{name}</h3>
 				<p>{barData.name}</p>
