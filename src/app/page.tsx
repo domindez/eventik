@@ -29,6 +29,7 @@ export default async function Home () {
         price={event.price}
         bar={event.bar}
         description={event.description}
+        eventType={event.eventType}
         />
       ))}
     </div>

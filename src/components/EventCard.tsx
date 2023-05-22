@@ -1,5 +1,6 @@
 import { DocumentReference, Timestamp, getDoc } from 'firebase/firestore'
 import '../sass/EventCard.scss'
+import Image from 'next/image'
 
 interface Props {
 	name: string
@@ -8,18 +9,26 @@ interface Props {
   price: number
   bar: DocumentReference
 	description: string
+	eventType: string
 }
 
-const EventCard = async ({ name, duration, date, price, bar, description }: Props) => {
+const EventCard = async ({ name, duration, date, price, bar, description, eventType }: Props) => {
   const barData = (await getDoc(bar)).data()
   if (!barData) return
+
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const eventImg = require(`../img/events/${eventType}.png`)
+
   return (
 		<div className='event-card'>
-			<h3>{name}</h3>
-			<p>{barData.name}</p>
-			<p>{date.toDate().toLocaleString()}</p>
-			<p>{duration}</p>
-			<p>{price > 0 ? price + '€' : 'GRATIS'}</p>
+			<Image src={eventImg} alt='event-image'/>
+			<div className='event-card__info'>
+				<h3>{name}</h3>
+				<p>{barData.name}</p>
+				<p>{date.toDate().toLocaleString()}</p>
+				<p>{duration}</p>
+				<p>{price > 0 ? price + '€' : 'GRATIS'}</p>
+				</div>
 		</div>
   )
 }
