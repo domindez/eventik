@@ -1,7 +1,8 @@
 import EventCard from '@/components/EventCard'
 import { Event } from '@/lib/interfaces'
 import '../sass/HomePage.scss'
-import { eventsRef, getCollectionData } from '@/lib/firebase/firestore'
+import { FirestoreService } from '@/lib/firebase/firestore'
+import sort from '@/lib/utils/sort'
 
 // async function getData () {
 //   const res = await fetch('http://localhost:3000/api/hello', { next: { revalidate: 1 } })
@@ -9,15 +10,11 @@ import { eventsRef, getCollectionData } from '@/lib/firebase/firestore'
 //   return await res.json()
 // }
 
+const firestoreService = new FirestoreService()
+
 export default async function Home () {
-  console.log('#######################################################')
-  let events = await getCollectionData(eventsRef) as Event[]
-  // Ordena los eventos por la fecha.
-  events = events.sort((a, b) => {
-    const dateA = a.date.toDate()
-    const dateB = b.date.toDate()
-    return dateA.getTime() - dateB.getTime()
-  })
+  let events = await firestoreService.getCollectionData(firestoreService.eventsRef) as Event[]
+  events = sort(events, 'up')
   return (
     <div className='home-page'>
       {events.map((event, index) => (

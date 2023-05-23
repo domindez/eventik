@@ -2,9 +2,9 @@
 
 import { useAuthContext } from '@/AuthContext'
 import { signOut } from 'firebase/auth'
-import LoginForm from '@/components/LoginForm'
 import { auth } from '@/lib/firebase'
 import '../../sass/Profile.scss'
+import UserAuthForm from '@/components/UserAuthForm'
 
 const Profile = () => {
   const { user } = useAuthContext()
@@ -20,10 +20,9 @@ const Profile = () => {
 
   return (
 		<div className='profile'>
-      {!user && <LoginForm /> }
-
-      {user &&
-      <div>
+      {!user
+        ? <UserAuthForm />
+        : <div>
         <h3>User Info</h3>
         <p>Nombre: {user.displayName}</p>
         <p>Email: {user.email}</p>

@@ -16,8 +16,6 @@ const EventCard = async ({ name, duration, date, price, bar, description, eventT
   const barData = (await getDoc(bar)).data()
   if (!barData) return
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-
   return (
 		<div className='event-card'>
 			<Image src={`/img/events/${eventType}.png`} width={360} height={180} alt='event-image'/>

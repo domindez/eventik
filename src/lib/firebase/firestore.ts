@@ -1,45 +1,51 @@
-import { collection, getDocs, CollectionReference, query, where, deleteDoc, doc, DocumentData, QuerySnapshot } from 'firebase/firestore'
+import { collection, getDocs, query, where, deleteDoc, doc, DocumentData, QuerySnapshot, CollectionReference } from 'firebase/firestore'
 import { Condition } from '../interfaces'
 import { db } from '.'
 
-// collection reference
-export const barsRef = collection(db, 'bars')
-export const eventsRef = collection(db, 'events')
+export class FirestoreService {
+  barsRef: CollectionReference<DocumentData>
+  eventsRef: CollectionReference<DocumentData>
 
-// functions
-export const getCollectionData = async (collectionRef: CollectionReference) => {
-  try {
-    const snap = await getDocs(collectionRef)
-    return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function deleteOneByConditions (collectionRef: CollectionReference<DocumentData>, conditions: Condition[]) {
-  let q = query(collectionRef)
-
-  for (const condition of conditions) {
-    q = query(q, where(condition.field, condition.operator, condition.value))
+  constructor () {
+    this.barsRef = collection(db, 'bars')
+    this.eventsRef = collection(db, 'events')
   }
 
-  const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
-
-  if (!querySnapshot.empty) {
-    const document = querySnapshot.docs[0]
-    await deleteDoc(doc(collectionRef, document.id))
-  }
-}
-
-export async function deleteAllByConditions (collectionRef: CollectionReference<DocumentData>, conditions: Condition[]) {
-  let q = query(collectionRef)
-
-  for (const condition of conditions) {
-    q = query(q, where(condition.field, condition.operator, condition.value))
+  async getCollectionData (collectionRef:CollectionReference) {
+    try {
+      const snap = await getDocs(collectionRef)
+      return snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
+  async deleteOneByConditions (collectionRef: CollectionReference<DocumentData>, conditions: Condition[]) {
+    let q = query(collectionRef)
 
-  const deletionPromises = querySnapshot.docs.map(document => deleteDoc(doc(collectionRef, document.id)))
-  await Promise.all(deletionPromises)
+    for (const condition of conditions) {
+      q = query(q, where(condition.field, condition.operator, condition.value))
+    }
+
+    const querySnapshot = await getDocs(q)
+
+    if (!querySnapshot.empty) {
+      const document = querySnapshot.docs[0]
+      await deleteDoc(doc(collectionRef, document.id))
+    }
+  }
+
+  async deleteAllByConditions (
+    collectionRef: CollectionReference<DocumentData>,
+    conditions: Condition[]) {
+    let q = query(collectionRef)
+    for (const condition of conditions) {
+      q = query(q, where(condition.field, condition.operator, condition.value))
+    }
+
+    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q)
+
+    const deletionPromises = querySnapshot.docs.map(document => deleteDoc(doc(collectionRef, document.id)))
+    await Promise.all(deletionPromises)
+  }
 }
