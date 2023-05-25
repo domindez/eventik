@@ -1,25 +1,49 @@
-.event-card{
+@use 'variables';
+
+.event-card {
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
-	box-shadow: 0px 0px 4px #00000020;
 	width: 90%;
 	min-width: 250px;
 	max-width: 320px;
 	background-color: #fff;
+	position: relative;
 
-	img{
+	&::after{
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		content: '';
+		box-shadow: 
+		2px 2px 20px -10px variables.$primaryColor; 
+
+		animation: glow 5s infinite linear;
+
+	}
+
+	@keyframes glow {
+		50% {
+			width: 95%;
+			height: 95%;
+		}
+	}
+
+	img {
 		height: 180px;
 		border-top-left-radius: 3px;
 		border-top-right-radius: 3px;
 		object-fit: cover;
 	}
-	
-	&__info{
+
+	&__info {
 		padding: 5px;
-		
-		h3{
+
+		h3 {
 			font-size: 1.5em;
 		}
 	}
-
 }

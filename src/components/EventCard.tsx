@@ -18,7 +18,7 @@ const EventCard = async ({ name, duration, date, price, bar, description, eventT
 
   return (
 		<div className='event-card'>
-			<Image src={`/img/events/${eventType}.png`} width={360} height={180} alt='event-image'/>
+			<Image src={`/img/events/${eventType}.jpg`} width={640} height={360} alt='event-image'/>
 			<div className='event-card__info'>
 				<h3>{name}</h3>
 				<p>{barData.name}</p>
